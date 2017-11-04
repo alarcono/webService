@@ -28,5 +28,27 @@ class Productos_model extends CI_Model
         return false;
     }
 
+    /**
+     * Description :  Obtiene los x productos más buscados
+     * Attributes  :  limit
+     *
+     **/
+
+    public function get_popular_productos( $limit )
+    {
+        $this->db->select('sum(busquedas) busquedas , pr.*')
+                 ->from('palabra_producto pp ')
+                 ->join('producto pr', 'pr.id_producto = pp.id_producto')
+                 ->group_by('pp.id_producto')
+                 ->order_by('busquedas' ,'DESC') 
+                 ->limit($limit);
+                 
+        $query = $this->db->get();
+        if( $query->result() > 0){
+             return $query->result();
+        }
+
+        return false;
+    }
 
 }
