@@ -32,7 +32,8 @@ class Productos extends REST_Controller
 
   		if($search == false){ // si no existe parámetro a buscar
 
-            $this->response("Debe ingresar keyword/", REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) 
+          $response = array ('error' => true , 'mensaje' => 'Debe ingresar {"keyword":"palabra a buscar"}');
+          $this->response($response, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) 
 
   		}
 
@@ -41,7 +42,8 @@ class Productos extends REST_Controller
   
   		if($results == false){
         	
-        	$this->response( "No existen productos para las palabras ingresadas", REST_Controller::HTTP_OK); // OK (200) 
+          $response = array ('error' => true , 'mensaje' => 'No se encontraron productos para la palabra ingresada');
+        	$this->response( $response, REST_Controller::HTTP_OK); // OK (200) 
 
   		}
       $keywordExist = $this->Palabras_model->get_palabras(strtolower($keyword)); // virifico si la palabra ha sido buscada antes
@@ -69,7 +71,8 @@ class Productos extends REST_Controller
         
       }
 
-      $this->response($results, REST_Controller::HTTP_OK); // OK (200) : retorno resultados
+      $response = array ('error' => false , 'results' =>  $results);
+      $this->response( $response , REST_Controller::HTTP_OK); // OK (200) : retorno resultados
   		
   }
 
@@ -80,14 +83,16 @@ class Productos extends REST_Controller
 
     $products = $this->Productos_model->get_popular_productos(20);
     if($products == false){// si no existen resultados
-
-      $this->response("No se encontraron resultados", REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) 
+      $response = array ('error' => true , 'mensaje' => "No se encontraron resultados");
+      $this->response( $response, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) 
 
     }
     foreach ($products as $index => $product) {
       $products[$index]->keywords = $this->Palabras_model->get_popular_palabra($product->id_producto , 5); 
     }
-    $this->response($products, REST_Controller::HTTP_OK); // OK (200) : retorno resultados
+    $response = array ('error' => false , 'results' => $products);
+
+    $this->response($response, REST_Controller::HTTP_OK); // OK (200) : retorno resultados
 
 
    }
