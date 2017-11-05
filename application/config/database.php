@@ -75,13 +75,13 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'prueba',
-	'dbdriver' => 'mysqli',
+	'hostname' => 'ec2-54-243-252-232.compute-1.amazonaws.com',
+	'username' => 'sqtktwmaqttnlb',
+	'password' => '79ebfe81ce154e75c45c853c967e61dcfc557c22bc146783f04c8d5a5755ce2a',
+	'database' => 'db9ohmnmudqglf',
+	'dbdriver' => 'postgre',
 	'dbprefix' => '',
-	'pconnect' => FALSE,
+	'pconnect' => TRUE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
 	'cachedir' => '',
@@ -92,5 +92,9 @@ $db['default'] = array(
 	'compress' => FALSE,
 	'stricton' => FALSE,
 	'failover' => array(),
-	'save_queries' => TRUE
+	'save_queries' => TRUE,
+	'port'   => 5432
+
+
+					
 );
