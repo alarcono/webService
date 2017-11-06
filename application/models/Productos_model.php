@@ -18,7 +18,9 @@ class Productos_model extends CI_Model
     {
         $this->db->select('*')
                  ->from('producto')
-                 ->like('tags',$keyWord);
+                 ->like('tags',$keyWord)
+                 ->or_like('titulo',$keyWord)
+                 ->or_like('descripcion',$keyWord);
                  
         $query = $this->db->get(); 
         if( $query->result() > 0){
