@@ -61,7 +61,7 @@ class Palabras_model extends CI_Model
                  ->from('palabra_producto pp')
                  ->join('palabra pa','pa.id_palabra  = pp.id_palabra')
                  ->where('pp.id_producto',$productId)
-                 ->group_by('pp.id_palabra')
+                 ->group_by('pa.id_palabra')
                  ->order_by('pp.busquedas DESC')
                  ->limit($limit);
                  
