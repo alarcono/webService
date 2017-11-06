@@ -15,7 +15,7 @@ $ mysqldump -u [usuario] -p prueba < prueba_dump.sql
 
 ## Carga csv
 
-Si se desea cargar un archivo .csv a la base de datos :
+Si se desea cargar un archivo .csv a la base de datos  ( el archivo debe tener el mismo nombre que la tabla en cuestión ):
 
 ```
 $ mysqlimport --ignore-lines=1 --default-character-set=utf8 --fields-terminated-by=,   --verbose --local -u [usuario] -p prueba [ruta]
