@@ -39,7 +39,7 @@ class Productos_model extends CI_Model
         $this->db->select('sum(busquedas) busquedas , pr.*')
                  ->from('palabra_producto pp ')
                  ->join('producto pr', 'pr.id_producto = pp.id_producto')
-                 ->group_by('pp.id_producto')
+                 ->group_by('pr.id_producto')
                  ->order_by('busquedas' ,'DESC') 
                  ->limit($limit);
                  
