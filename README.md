@@ -9,7 +9,7 @@ Webservice realizado con Codeigniter Rest Server para probar métodos get.
 
 
 ```
-$ mysqldump -u [usuario] -p prueba < prueba_dump.sql
+$ mysql -u [usuario] prueba < prueba_dump.sql
 
 ```
 
